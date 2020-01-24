@@ -1,31 +1,26 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { BrowserRouter as Router, Route  } from 'react-router-dom';
 
-
+//Here in header I use Link to return the user to 'login' screen
  function Header() {
     return (
-        <Router>
-        <div>
         <header style={headerStyle}>
             <h1>Front-End Chat</h1>
-            <Link to='/'>Close</Link> 
+            <Link style={linkStyle} to='/'>Close</Link> 
         </header>
-       </div>
-       </Router>
     )
 }
 
+//Styling for header
 const headerStyle = {
-    background: 'red',
+    background: '#383838',
     color: 'White',
     textAlign: 'center',
     padding: '10px'
 }
-export default Header;
 
- //  <header style={headerStyle}>
-        //  <h1>Front-End Chat</h1>
-        //  <Link to='/'>Exit</Link> |  <Link 
-        //  to='/Login'>Login</Link>
-        // </header>
+//Styling for link
+const linkStyle = {
+    color: 'white',
+}
+export default Header;

@@ -18,13 +18,16 @@ a {
 .textContainer {
   display: flex;
   flex-direction: column;
-  /* flex-wrap: wrap; */
   height: 200px;
 }
 
-.Login {
+ .Login {
   display: flex;
-}
+  flex-direction: column;
+  align-items: center;
+  font-size: 60px;
+} 
+
 
 .h1 {
   color: red;

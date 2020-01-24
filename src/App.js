@@ -1,13 +1,9 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Route  } from 'react-router-dom';
-
 import AddMessage from './components/AddMessage';
-
 import io from 'socket.io-client';
 import Login from './components/Login.js';
 import './App.css';
-import Linkify from 'react-linkify';
-import {emojify} from 'react-emojione';
 
 
 
@@ -18,13 +14,13 @@ class App extends React.Component {
    this.state = {
      AllMessages: [],
      username: '',
-     login: false
+    //  login: false
    }
    this.socket = io('http://3.120.96.16:3000');
 
    this.getMsgArr = this.getMsgArr.bind(this);
    this.setUsername = this.setUsername.bind(this)
-   this.onLogin = this.onLogin.bind(this)
+   //this.onLogin = this.onLogin.bind(this)
 
  }
 
@@ -37,11 +33,11 @@ class App extends React.Component {
  }
 
  //When the user is on login page the login will be false and when the user submits the login input the login will be set to true and then it will render chat screen
- onLogin() {
-   this.setState({
-     login: true
-   });
- }
+//  onLogin() {
+//    this.setState({
+//      login: true
+//    });
+//  }
 
  //All messages(data) from server will be saved in AllMessages array and then in second socket.on where message is sent which is an object in setState with key AllMessages it will be updated with method setState()
   componentDidMount() {
@@ -61,22 +57,17 @@ class App extends React.Component {
   }
 
  
-  // Here I add Linkify and emojify which lets the user to use the links and emojis in the chat app also I add other js files I use here()
-  //When the user is on login page the login will be false and when the user submits the login input the login will be set to true and then it will render chat screen
+  // Here I use Router to navigate from login screen to chat screen
  render() {
-   if(this.state.login === true) {
-     return <AddMessage AllMessages={this.state.AllMessages} getMsgArr={this.getMsgArr} socket={this.socket} AllMessages={this.state.AllMessages} addMessage={this.addMessage} username = {this.state.username}/> 
-   }
+    //When the user is on login page the login will be false and when the user submits the login input the login will be set to true and then it will render chat screen
+    //  if(this.state.login === true) {
+    //    return <AddMessage AllMessages={this.state.AllMessages} getMsgArr={this.getMsgArr} socket={this.socket} AllMessages={this.state.AllMessages} addMessage={this.addMessage} username = {this.state.username}/> 
+    //   }
     return (
       <Router>
            <div className="App">
-             <div>
              <Route path='/' exact render={ () =>  <Login onLogin={this.onLogin} setUsername={this.setUsername} username={this.state.username} />} />
-                <React.Fragment>
-                
-              </React.Fragment>
-             <Route path='/AddMessages' exact render={()=> <AddMessage AllMessages={this.state.AllMessages} username = {this.state.username} />} />
-           </div>
+             <Route path='/AddMessage' exact render={()=> <AddMessage AllMessages={this.state.AllMessages} getMsgArr= {this.getMsgArr} socket={this.socket}  username = {this.state.username} addMessage={this.addMessage} />} />
           </div>
       </Router>
     );
