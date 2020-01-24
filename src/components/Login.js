@@ -19,7 +19,7 @@ export class Login extends Component {
 
     render() {
         if(/^[a-zA-Z\d_-\s]{1,12}$/.test(this.state.username)) {
-            return <Redirect to='/AddMessage' />;
+            // return <Redirect to='/AddMessage' />;
         }
         return (
             <div><h1 className='Login'>Please Login</h1>
